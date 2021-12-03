@@ -19,7 +19,7 @@ ds = 1e-2
 scalefactor = [1 1 1 1 1]'
 scale = 'linear'
 direction = +1
-npts = 10
+npts = 5
 i_crossing = 1
 
 % initiate function sturucture
@@ -47,8 +47,11 @@ srchparams.verbose = 0;
 end
 
 
-% the functions below are determined by a specific system
+% The functions below are determined by a specific system
 function result = evolvefunction(t,v,n,params)
+% n = 0 - right hand side of equations of a specific system
+% n = 1 - Jacobian matrix of the system
+% n = 2 - Hessian matrix of the system
 x = v(1)
 y = v(2)
 c = params
@@ -68,6 +71,8 @@ result = [1,0;0,1]
 end
 
 function result = eventsfunction(t,v,n,params)
+% n = 0 - event function
+% n = 1 - derivative of event function with respect to x_i
 x = v(1)
 y = v(2)
 c = params
@@ -88,6 +93,8 @@ end
 end
 
 function result = stepparfunction(t,v,n)
+% n = 0 - derivative of right hand side of system's ODEs with resprect to parameter
+% n = 1 - derivative of Jacobian with resprect to parameter
 x = v(1)
 y = v(2)
 if n == 0
