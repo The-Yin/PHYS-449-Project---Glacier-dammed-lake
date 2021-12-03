@@ -1,4 +1,5 @@
 function [f_min,f_max] = plot_find_extremum(x_set,y_set,period_set,c_set,function_structure)
+% Find extremum value of x_i in the closed orbit with given parameter
 n = length(x_set)
 f_min = zeros(1,n)
 f_max = zeros(1,n)
